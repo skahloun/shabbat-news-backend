@@ -19,18 +19,8 @@ async function fetchNews() {
 
 // Function to fetch Shabbat times (Jerusalem; adjust city if needed)
 async function fetchShabbat() {
-  try {
-    const res = await axios.get('https://www.hebcal.com/shabbat?cfg=json&city=Jerusalem&m=50');
-    const items = res.data.items;
-    const havdalah = items.find(i => i.category === 'havdalah');
-    const now = new Date();
-    const endTime = new Date(havdalah.date);
-    const isActive = now < endTime && now > new Date(items.find(i => i.category === 'candles').date);
-    return { isActive, endTime: endTime.toLocaleString() };
-  } catch (error) {
-    console.error('Shabbat error:', error);
-    return { isActive: false, endTime: 'Unknown' };
-  }
+  // Temporarily hardcoded for testing - remove after test!
+  return { isActive: true, endTime: 'Test End Time (e.g., 20:28)' };
 }
 
 // Poll data every 5 minutes
